@@ -786,8 +786,6 @@ export type SiteSettingsQueryResult = {
 
 // Query TypeMap
 import "@sanity/client";
-
-// @ts-expect-error - Sanity client types are not defined in the types file
 declare module "@sanity/client" {
   interface SanityQueries {
     "\n  *[_type == \"legalPage\" && slug.current == $slug && isPublished == true][0] {\n    _id,\n    title,\n    slug,\n    lastUpdated,\n    introduction,\n    sections[] {\n      heading,\n      content[] {\n        ...,\n        _type == \"bulletList\" => {\n          _type,\n          items[]\n        }\n      }\n    },\n    contactInfo {\n      heading,\n      description,\n      contactMethods[] {\n        label,\n        value\n      }\n    },\n    seoTitle,\n    seoDescription\n  }\n": LegalPageQueryResult;
